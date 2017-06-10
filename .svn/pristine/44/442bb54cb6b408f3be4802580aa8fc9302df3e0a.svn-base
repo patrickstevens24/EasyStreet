@@ -1,0 +1,63 @@
+/**
+ * 
+ */
+package model;
+
+import java.util.Map;
+
+/**
+ * @author Patrick Stevens
+ * @version 1.0
+ */
+public class Car extends AbstractVehicle {
+    /** */
+    private static final int DEATH_TIME = 15;
+    
+    /**
+     * 
+     * @param theX 
+     * @param theY 
+     * @param theDirection 
+     */
+    public Car(final int theX, final int theY, final Direction theDirection) {
+        super(theX, theY, theDirection, DEATH_TIME);
+    }
+    
+    /**
+     * 
+     */
+    @Override
+    public boolean canPass(final Terrain theTerrain, final Light theLight) {
+        boolean pass = false;
+        if ((theTerrain == Terrain.STREET) || (theTerrain == Terrain.LIGHT)) {
+            pass = true;
+        }
+        if ((theTerrain == Terrain.LIGHT) && (theLight == Light.RED)) {
+            pass = false;
+        }
+        return pass;
+    }
+
+    /**
+     * 
+     */
+    @Override
+    public Direction chooseDirection(final Map<Direction, Terrain> theNeighbors) {
+        final Direction carDirection  = this.getDirection();
+        Direction currentDirection = null;
+        if ((theNeighbors.get(carDirection) == Terrain.STREET) 
+                        || (theNeighbors.get(carDirection) == Terrain.LIGHT)) {
+            currentDirection = carDirection;
+        } else if ((theNeighbors.get(carDirection.left()) == Terrain.STREET)
+                        || (theNeighbors.get(carDirection.left()) == Terrain.LIGHT)) {
+            currentDirection = carDirection.left();
+        } else if ((theNeighbors.get(carDirection.right()) == Terrain.STREET)
+                        || (theNeighbors.get(carDirection.right()) == Terrain.LIGHT)) {
+            currentDirection = carDirection.right();
+        } else {
+            currentDirection = carDirection.reverse();
+        }
+        return currentDirection;
+    }
+
+}

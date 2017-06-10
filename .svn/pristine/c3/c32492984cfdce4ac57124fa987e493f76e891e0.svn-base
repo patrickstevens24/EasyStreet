@@ -1,0 +1,134 @@
+package model;
+
+/**
+ * 
+ * @author Patrick Stevens
+ * @version 1.0
+ */
+public abstract class AbstractVehicle implements Vehicle {
+    /** */
+    private int myDeathTime;
+    /** */
+    private int myX;
+    /** */
+    private int myY;
+    /** */
+    private final Direction myInitialDirection;
+    /** */
+    private final int myInitialX;
+    /** */
+    private final int myInitialY;
+    /** */
+    private Direction myCurrentDirection;
+    
+    /** */
+    private int myPokeCount;
+    /** */
+    private boolean myAlive;
+    
+    /**
+     * 
+     * @param theX 
+     * @param theY 
+     * @param theDirection 
+     * 
+     */
+    protected AbstractVehicle(final int theX, final int theY,
+                              final Direction theDirection, final int theDeathTime) {
+        myInitialY = theY;
+        myInitialX = theX;
+        myInitialDirection = theDirection;
+        myX = theX;
+        myY = theY;
+        myDeathTime = theDeathTime;
+        myCurrentDirection = theDirection;
+        myAlive = true;
+        myPokeCount = 0;
+    }
+    @Override
+    public boolean canPass(final Terrain theTerrain, final Light theLight) {
+        return myAlive;
+        
+    }
+    @Override
+    public void collide(final Vehicle theOther) {
+        if (isAlive() && theOther.isAlive()) {
+            if (getDeathTime() > theOther.getDeathTime()) {
+                myAlive = false;
+            }
+        }
+    }
+    @Override
+    public String getImageFileName() {
+        String fileName = null;
+        if (myAlive) {
+            fileName = getClass().getSimpleName().toLowerCase() + ".gif";
+        } else {
+            fileName = getClass().getSimpleName().toLowerCase() + "_dead.gif";
+        }
+        return fileName;
+    }
+    
+    @Override
+    public int getDeathTime() {
+        return myDeathTime;
+    }
+    
+    @Override
+    public Direction getDirection() {
+        return myCurrentDirection;
+    }
+    @Override
+    public int getX() {
+        return myX;
+    }
+    @Override
+    public int getY() {
+        return myY;
+    }
+    @Override
+    public boolean isAlive() {
+        return myAlive;
+    }
+    @Override
+    public void poke() {
+        myPokeCount++;
+        if (myPokeCount == getDeathTime()) {
+            myPokeCount = 0;
+            myAlive = true;
+            setDirection(Direction.random());
+        }
+    }
+    @Override
+    public void reset() {
+        setX(myInitialX);
+        setY(myInitialY);
+        setDirection(myInitialDirection); 
+        myPokeCount = 0;
+        myAlive = true;
+    }
+    @Override
+    public void setDirection(final Direction theDirection) {
+        myCurrentDirection = theDirection;
+    }
+    @Override
+    public void setX(final int theX) {
+        myX = theX;
+    }
+    @Override
+    public void setY(final int theY) {
+        myY = theY;
+    }
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        if (myAlive) {
+            builder.append(getClass().getSimpleName());
+        } else {
+            builder.append("Pokes: ");
+            builder.append(myPokeCount);
+        }
+        return builder.toString();
+    }
+
+}

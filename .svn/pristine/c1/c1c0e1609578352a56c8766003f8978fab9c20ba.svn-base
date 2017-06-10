@@ -1,0 +1,16 @@
+/**
+ * 
+ */
+package model;
+
+/**
+ * @author Patrick
+ *
+ */
+public class Atv extends AbstractVehicle {
+
+    public Atv(int vehicleX, int vehicleY, Direction valueOf) {
+        // TODO Auto-generated constructor stub
+    }
+
+}

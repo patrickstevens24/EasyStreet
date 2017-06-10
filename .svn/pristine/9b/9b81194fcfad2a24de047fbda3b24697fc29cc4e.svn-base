@@ -1,0 +1,56 @@
+/**
+ * 
+ */
+package model;
+
+/**
+ * @author Patrick
+ * @version 1.0
+ */
+public class Human extends AbstractVehicle {
+    /** */
+    private static final int DEATH_TIME = 50;
+    
+    /**
+     * 
+     * @param theX 
+     * @param theY 
+     * @param theDir 
+     * @param theTerr 
+     */
+    public Human(final int theX, final int theY, 
+                 final Direction theDir, final Terrain theTerr) {
+        super();
+    }
+    
+    
+    /**
+     * @param theTerrain 
+     * @param theLight 
+     * @return false
+     */
+    public boolean canPass(final Terrain theTerrain, final Light theLight) {
+        return false;
+        
+    }
+    
+    public void collide(final Vehicle theOther) {
+        
+    }
+    
+    public String getImageFileName() {
+        return null;
+        
+    }
+    
+    public int getDeathTime() {
+        
+    }
+    
+    public Direction getDirection() {
+        
+    }
+    
+    public 
+
+}

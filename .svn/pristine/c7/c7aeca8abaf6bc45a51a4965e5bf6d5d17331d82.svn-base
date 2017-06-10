@@ -1,0 +1,16 @@
+/**
+ * 
+ */
+package model;
+
+/**
+ * @author Patrick
+ *
+ */
+public class Human extends AbstractVehicle {
+
+    public Human(int vehicleX, int vehicleY, Direction valueOf, Terrain valueOf2) {
+        // TODO Auto-generated constructor stub
+    }
+
+}

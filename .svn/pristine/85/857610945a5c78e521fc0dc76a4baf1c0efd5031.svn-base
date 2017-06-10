@@ -1,0 +1,60 @@
+/**
+ * 
+ */
+package model;
+
+import java.util.Map;
+
+/**
+ * @author Patrick Stevens
+ * @version 1.0
+ */
+public class Human extends AbstractVehicle {
+    /** */
+    private static final int DEATH_TIME = 45;
+    /** */
+    private final Terrain myTerrain; 
+    
+    /**
+     * 
+     * @param theX 
+     * @param theY 
+     * @param theDirection 
+     * @param theTerrain 
+     */
+    public Human(final int theX, final int theY, 
+                 final Direction theDirection, final Terrain theTerrain) {
+        super(theX, theY, theDirection, DEATH_TIME);
+        myTerrain = theTerrain;
+    }
+    
+    /**
+     * @param theTerrain 
+     * @param theLight 
+     * @return false
+     */
+    public boolean canPass(final Terrain theTerrain, final Light theLight) {
+        boolean canPass = false;
+        if (theTerrain == Terrain.STREET || theTerrain == Terrain.TRAIL 
+                        || theTerrain == Terrain.LIGHT || theTerrain == Terrain.GRASS) {
+            canPass = true;
+        }
+        return canPass;    
+    }
+
+    @Override
+    public Direction chooseDirection(final Map<Direction, Terrain> theNeighbors) {
+        final Direction humanDirection  = Direction.random();
+        final boolean streetLight = (myTerrain == Terrain.LIGHT) 
+                        || (myTerrain == Terrain.STREET);
+        Direction currentDirection = null;
+        
+        if (theNeighbors.get(humanDirection) == myTerrain)  {
+            currentDirection = humanDirection;
+        } else if (streetLight && theNeighbors.get(humanDirection) == Terrain.STREET 
+                        || theNeighbors.get(humanDirection) == Terrain.LIGHT) {
+            currentDirection = humanDirection;
+        }
+        return currentDirection;
+    }
+}

@@ -1,0 +1,35 @@
+package model;
+
+import java.util.Map;
+/**
+ * 
+ * @author Patrick Stevens
+ * @version 1.0
+ */
+public abstract class AbstractVehicle implements Vehicle {
+    /** */
+    private final int myInitialX;
+    /** */
+    private final int myInitialY;
+    /** */
+    private final Direction myInitialDirection;
+    /** */
+    private int myCurrentX;
+    /** */
+    private int myCurrentY;
+    /** */
+    private Direction myCurrentDirection;
+    /** */
+    private final int myDeathTime;
+    /** */
+    private int myPokeCount;
+    /** */
+    private boolean myAliveStatus;
+    
+    protected AbstractVehicle(final int theX, final int theY,
+                              final Direction theDir, final int theDeathTime) {
+        myInitialY = theY;
+        myInitialX = theX;
+    }
+
+}

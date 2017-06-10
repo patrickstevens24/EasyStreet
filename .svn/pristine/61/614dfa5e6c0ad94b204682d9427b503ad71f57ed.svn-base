@@ -1,0 +1,152 @@
+/**
+ * 
+ */
+package model;
+
+import java.util.Map;
+
+/**
+ * @author Patrick
+ *
+ */
+public class Bicycle extends AbstractVehicle {
+
+    public Bicycle(int vehicleX, int vehicleY, Direction valueOf) {
+        // TODO Auto-generated constructor stub
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#canPass(model.Terrain, model.Light)
+     */
+    @Override
+    public boolean canPass(Terrain theTerrain, Light theLight) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#chooseDirection(java.util.Map)
+     */
+    @Override
+    public Direction chooseDirection(Map<Direction, Terrain> theNeighbors) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#collide(model.Vehicle)
+     */
+    @Override
+    public void collide(Vehicle theOther) {
+        // TODO Auto-generated method stub
+
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#getDeathTime()
+     */
+    @Override
+    public int getDeathTime() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#getImageFileName()
+     */
+    @Override
+    public String getImageFileName() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#getDirection()
+     */
+    @Override
+    public Direction getDirection() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#getX()
+     */
+    @Override
+    public int getX() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#getY()
+     */
+    @Override
+    public int getY() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#isAlive()
+     */
+    @Override
+    public boolean isAlive() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#poke()
+     */
+    @Override
+    public void poke() {
+        // TODO Auto-generated method stub
+
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#reset()
+     */
+    @Override
+    public void reset() {
+        // TODO Auto-generated method stub
+
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#setDirection(model.Direction)
+     */
+    @Override
+    public void setDirection(Direction theDir) {
+        // TODO Auto-generated method stub
+
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#setX(int)
+     */
+    @Override
+    public void setX(int theX) {
+        // TODO Auto-generated method stub
+
+    }
+
+    /* (non-Javadoc)
+     * @see model.Vehicle#setY(int)
+     */
+    @Override
+    public void setY(int theY) {
+        // TODO Auto-generated method stub
+
+    }
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+    }
+
+}

@@ -1,0 +1,72 @@
+/**
+ * 
+ */
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+/**
+ * @author Patrick Stevens
+ * @version 1.0
+ */
+public class Human extends AbstractVehicle {
+    /** */
+    private static final int DEATH_TIME = 45;
+    /** */
+    private final Terrain myTerrain; 
+    
+    /**
+     * 
+     * @param theX 
+     * @param theY 
+     * @param theDirection 
+     * @param theTerrain 
+     */
+    public Human(final int theX, final int theY, 
+                 final Direction theDirection, final Terrain theTerrain) {
+        super(theX, theY, theDirection, DEATH_TIME);
+        myTerrain = theTerrain;
+    }
+    
+    /**
+     * @param theTerrain 
+     * @param theLight 
+     * @return false
+     */
+    @Override
+    public boolean canPass(final Terrain theTerrain, final Light theLight) {
+        boolean canPass = false;
+        
+        if ((myTerrain == Terrain.STREET || myTerrain == Terrain.LIGHT) 
+                        && (theTerrain == Terrain.STREET || (theTerrain == Terrain.LIGHT))) {
+            canPass = true;
+        } else if (theTerrain == myTerrain) {
+            canPass = true;
+        }
+        return canPass;     
+    }
+
+    @Override
+    public Direction chooseDirection(final Map<Direction, Terrain> theNeighbors) {
+        final List<Direction> directionList = new ArrayList<Direction>();
+        final Random random = new Random();
+       
+        final boolean streetLight = (myTerrain == Terrain.LIGHT) 
+                        || (myTerrain == Terrain.STREET);
+        
+        for (final Direction dir : theNeighbors.keySet()) {
+            if (streetLight && theNeighbors.get(dir) == Terrain.STREET 
+                        || theNeighbors.get(dir) == Terrain.LIGHT) {
+                directionList.add(dir);
+            } else if (myTerrain == theNeighbors.get(dir)) {
+                directionList.add(dir);
+            }
+        }
+        final int chooseRandom = random.nextInt(directionList.size());
+        final Direction changeHuman = directionList.get(chooseRandom);
+        return changeHuman;
+    }
+}

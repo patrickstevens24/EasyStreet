@@ -1,0 +1,45 @@
+/**
+ * 
+ */
+package model;
+
+/**
+ * @author Patrick Stevens
+ * @version 1.0
+ */
+public class Taxi extends Car {
+    /** */
+    private int myCounter;
+
+    
+    /**
+     * 
+     * @param theX 
+     * @param theY 
+     * @param theDirection 
+     */
+    public Taxi(final int theX, final int theY, final Direction theDirection) {
+        super(theX, theY, theDirection);
+    }
+    /**
+     * 
+     */
+    @Override
+    public boolean canPass(final Terrain theTerrain, final Light theLight) {
+        boolean pass = false;
+        final int taxiCanPass = 4;
+
+        if ((theTerrain == Terrain.STREET) || ((theTerrain == Terrain.LIGHT 
+                        && (theLight == Light.GREEN || (theLight == Light.YELLOW))))) {
+            pass = true;
+        } else if ((theTerrain == Terrain.LIGHT) && (theLight == Light.RED)) {
+            pass = false;
+            myCounter++;
+            if (myCounter == taxiCanPass) {
+                myCounter = 0;
+                pass = true;
+            }
+        }
+        return pass;
+    }
+}
